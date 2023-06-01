@@ -20,7 +20,8 @@ def check_property_files(property_file, result_file, lock):
                 lock.acquire()
                 result_file.write(property_file + "\n")
                 lock.release()
-
+#使用线程锁（Lock）来保护文件写操作
+#在 check_property_files() 函数中，当我们发现有敏感信息时，我们就将文件名写入到 result_file 中。在 read_property_files_in_1_txt() 函数中，我们打开 1.txt 文件和 2222.txt 文件，最后把 2222.txt 文件的句柄传入到 check_property_files() 函数中
 def read_property_files_in_1_txt():
     """
     Batch read the content of xxx.properties files in 1.txt file, 
@@ -41,3 +42,6 @@ def read_property_files_in_1_txt():
             t.join()
 
 read_property_files_in_1_txt()
+
+
+
